@@ -1,0 +1,135 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+.Notes-container {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 50px;
+
+}
+.Notes-heading {
+    font-size: 50px;
+}
+
+.empty-box{
+    width: 100%;
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.ul-heading{
+    font-size: 70px;
+    color: rgb(155, 152, 152);
+}
+.empty-box img{
+    width: 300px;
+}
+
+.note-box{
+
+    min-height: 60vh;
+    display: flex;
+    padding: 20px;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+ 
+}
+
+ .note{
+    width: 240px;
+    height: 200px;
+    border: 1px solid black;
+    border-radius: 5px ;
+    list-style: none;
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    margin: 10px;
+}
+
+.inline-ops{
+    display: flex;
+    justify-content: space-between;
+}
+
+.inline-ops p{
+    border-radius: 20px;
+    padding: 3px 10px ;
+    font-size: 15px;
+
+}
+.inline-ops button{
+    border: none;
+  color: rgb(128, 126, 126);
+  background-color: transparent;
+  margin: 5px;
+}
+
+.note .note-title{
+    font-size: 20px;
+}
+.note .note-text{
+    font-size: 15px;
+}
+
+.note .note-date{
+    text-align: end;
+    font-size: 12px;
+}
+
+
+.Input-field {
+display: flex;
+justify-content: end;
+
+}
+
+.Input-field .add-btn{
+border: 1px solid black;
+padding: 12px 15px ;
+border-radius: 50%;
+transition: all 2s ease-in-out;
+}
+
+form {
+    width: 300px;
+    height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  border: 1px solid gray ;
+  border-radius: 5px;
+  padding: 10px;
+
+}
+
+
+form input{
+    
+    border: none;
+    border-bottom: 1px solid silver;
+    height: 30px;
+    outline: none;
+}
+form select{
+    border: none;
+    border-bottom: 1px solid silver;
+    height: 30px;
+    outline: none;
+}
+form .submit{
+   
+    border: 1px solid silver;
+    padding: 8px 20px;
+    border-radius: 10px;
+}

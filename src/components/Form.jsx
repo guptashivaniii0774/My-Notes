@@ -1,50 +1,94 @@
- import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { add, update } from '../features/todo/todoSlice';
-import {useDispatch, useSelector} from 'react-redux';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { FaPlus } from 'react-icons/fa';
 
 
 const Form = () => {
+  const { edit } = useSelector((state) => state.todos);
+  const [text, setText] = useState('');
+  const [category, setCategory] = useState('personal');
+  const [headings, setHeadings] = useState('');
+  const [isFormVisible, setIsFormVisible] = useState(false);
 
-const {edit} = useSelector(state => state.todos);
- 
-const [text , setText] = useState("")
+  const dispatch = useDispatch();
 
-const dispatch = useDispatch()
-
-const handleSubmit = (e)=>{
-  e.preventDefault()
-
-if(edit.isEdit){
-  const updatedTodo ={
-id: edit.todo.id,
-  text: text,
+  const handleAddButtonClick = () => {
+    setIsFormVisible(true);
   };
-  dispatch(update(updatedTodo));
-}else{
-  const newTodo = {
-    id : crypto.randomUUID(),
-    text : text,
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (edit.isEdit) {
+      const updatedTodo = {
+        id: edit.todo.id,
+        text: text,
+        category: category,
+        headings: headings,
+      };
+      dispatch(update(updatedTodo));
+    } else {
+      const newTodo = {
+        id: crypto.randomUUID(),
+        text: text,
+        category: category,
+        headings: headings,
+      };
+      dispatch(add(newTodo));
+    }
+
+    setText('');
+    setCategory('personal');
+    setHeadings('');
+    setIsFormVisible(false);
   };
-   dispatch(add(newTodo));
 
-};
-setText("");
-
-
-};
- useEffect(()=>{
-  setText(edit.todo.text);
- },[edit]); 
-
-
+  useEffect(() => {
+    setText(edit.todo.text);
+    setCategory(edit.todo.category || 'personal');
+    setHeadings(edit.todo.headings || '');
+    setIsFormVisible(edit.isEdit);
+  }, [edit]);
 
   return (
-   <form className='d-flex 'onSubmit={handleSubmit}>
-    <input className='form-control  w-75 p-3 my-3'  type="text" required placeholder='What are you thinking...' value={text} onChange={(e)=>setText(e.target.value)} />
-    <button className='btn btn-dark w-25 my-3 mx-1 p-3'> Add Here</button>
-   </form>
-  )
-}
+    <div className='Input-field'>
+      {!isFormVisible && (
+        <button className='add-btn' onClick={handleAddButtonClick}>
+          <FaPlus />
+        </button>
+      )}
 
-export default Form
+      {isFormVisible && (
+        <form onSubmit={handleSubmit}>
+
+          <select value={category} onChange={(e) => setCategory(e.target.value)}>
+            <option value='personal'>Personal</option>
+            <option value='office'>Office</option>
+            <option value='home'>Home</option>
+          </select>
+
+          <input 
+          type='text'
+           required 
+           placeholder='Title'
+          value={headings} 
+          onChange={(e) => setHeadings(e.target.value)} />
+
+
+          <input
+            type='text'
+            required
+            placeholder='What are you thinking...'
+            value={text}
+            onChange={(e) => setText(e.target.value)}/>
+
+
+          <button className='submit' type='submit'>Add </button>
+        </form>
+      )}
+    </div>
+  );
+};
+
+export default Form;

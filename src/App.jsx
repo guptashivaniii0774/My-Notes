@@ -1,15 +1,15 @@
 import React from 'react'
-import Navbar from './components/Navbar'
 import Form from './components/Form'
 import ListGroup from './components/ListGroup'
 
 const App = () => {
   return (
     <>
-      <Navbar/>
-      <div className="container w-75 p-5"> 
-      <Form/>
+  
+      <div className='Notes-container'> 
+      <h1 className='Notes-heading'>Notes</h1>
       <ListGroup/>
+      <Form/>
 
       </div>
     </>
